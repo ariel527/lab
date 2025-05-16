@@ -30,7 +30,7 @@ void insere_cliente() {
         return;
     }
 
-    Cliente novo;
+    Cliente 
 
     printf("Nome do cliente: ");
     scanf(" %[^\n]", novo.nome);  
