@@ -137,7 +137,6 @@ int main() {
         printf("7 - Excluir clientes\n");
 
         scanf("%d", &escolha);
-
         switch (escolha) {
             case 1:
                 insere_cliente();
@@ -153,18 +152,20 @@ int main() {
                 break;
             case 5:
                 listar_produto();
+            break;
             case 6:
                 atualizar_cliente();
                 break;
             case 7 :
                 excluir_cliente();
+            break;
             case 0:
-
                 printf("Saindo do sistema...\n");
                 break;
             default:
                 printf("Opção inválida!\n");
-        }
+        
+}
 
     } while (escolha != 0);
 
