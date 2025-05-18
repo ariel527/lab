@@ -33,7 +33,7 @@ void insere_cliente() {
     Cliente novo;
 
     printf("Nome do cliente: ");
-    scanf(" %[^\n]", novo.nome);
+    scanf(" %[^\n]", novo.nome);  
     printf("Telefone: ");
     scanf(" %[^\n]", novo.telefone);
     printf("Endereco: ");
@@ -47,7 +47,7 @@ void insere_cliente() {
     scanf("%s", resposta);
 
     if (strcmp(resposta, "sim") == 0) {
-        insere_cliente();
+        insere_cliente(); 
     } else {
         printf("*** Cadastro finalizado ***\n");
     }
@@ -83,43 +83,24 @@ char resposta[10];
     produto novo;
 
     printf("Nome do produto: ");
-    scanf(" %[^\n]", novo.nome);
+    scanf(" %[^\n]", novo.nome);  
     printf("codigo: ");
     scanf(" %[^\n]", novo.codigo);
 
-
+    
     produtos[qtd_prod_cadastrados++] = novo;
 
     printf("Deseja cadastrar mais um produto? (sim/nao): ");
     scanf("%s", resposta);
 
     if (strcmp(resposta, "sim") == 0) {
-        insere_produto();
+        insere_produto(); 
     } else {
         printf("*** Cadastro finalizado ***\n");
     }
 }
-void listar_produto(){
- if (qtd_prod_cadastrados == 0) {
-        printf("Nenhum produto cadastrado.\n");
-        return;
-    }
-
-    printf("\n--- Lista de produtos ---\n");
-    for (int i = 0; i < qtd_prod_cadastrados; i++) {
-        printf("Produto %d:\n", i + 1);
-        printf("Nome: %s\n", produtos[i].nome);
-        printf("Telefone: %s\n", produtos[i].codigo);
-        printf("-------------------------\n");
-    }
-}
-
-void atualizar_cliente () {
-
-
-}
-void excluir_cliente(){
-
+void excluir_clientes(){
+    
 }
 
 
@@ -132,11 +113,10 @@ int main() {
         printf("2 - Listar Clientes\n");
         printf("3 - insere Venda\n");
         printf("4 - insere produto\n");
-        printf ("5 - listar produtos\n");
-        printf ("6 - Atualizar cliente\n");
-        printf("7 - Excluir clientes\n");
+        printf("5 - Excluir clientes");
 
         scanf("%d", &escolha);
+
         switch (escolha) {
             case 1:
                 insere_cliente();
@@ -151,21 +131,15 @@ int main() {
                 insere_produto();
                 break;
             case 5:
-                listar_produto();
-            break;
-            case 6:
-                atualizar_cliente();
+                excluir_clientes();
                 break;
-            case 7 :
-                excluir_cliente();
-            break;
             case 0:
+            
                 printf("Saindo do sistema...\n");
                 break;
             default:
                 printf("Opção inválida!\n");
-        
-}
+        }
 
     } while (escolha != 0);
 
