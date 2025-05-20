@@ -100,7 +100,14 @@ char resposta[10];
     }
 }
 void excluir_clientes(){
-    
+    char cliente_exclusao[50];
+    listar_clientes();
+    scanf ("%s", cliente_exclusao);
+    qtd_clientes_cadastrados = 0;
+    while (strcmp (cliente_exclusao, clientes[qtd_clientes_cadastrados].nome ) !=0) {
+    qtd_clientes_cadastrados++;    
+}
+ 
 }
 
 
