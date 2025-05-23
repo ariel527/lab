@@ -101,11 +101,36 @@ char resposta[10];
 }
 void excluir_clientes(){
     char cliente_exclusao[50];
+    int encontrado = 0;
+
+    if (qtd_clientes_cadastrados == 0) {
+        printf("Nenhum cliente para excluir.\n");
+        return;
+    }
+
     listar_clientes();
-    scanf ("%s", cliente_exclusao);
-    qtd_clientes_cadastrados = 0;
-    while (strcmp (cliente_exclusao, clientes[qtd_clientes_cadastrados].nome ) !=0) {
-    qtd_clientes_cadastrados++;    
+
+    printf("Digite o nome do cliente a ser excluído: ");
+    scanf(" %[^\n]", cliente_exclusao);
+
+    for (int i = 0; i < qtd_clientes_cadastrados; i++) {
+        if (strcmp(cliente_exclusao, clientes[i].nome) == 0) {
+            for (int j = i; j < qtd_clientes_cadastrados - 1; j++) {
+                clientes[j] = clientes[j + 1];
+            }
+            qtd_clientes_cadastrados--;
+            encontrado = 1;
+            printf("Cliente excluído com sucesso.\n");
+            break;
+        }
+    }
+
+    if (!encontrado) {
+        printf("Cliente não encontrado.\n");
+    }
+}
+
+
 }
  
 }
