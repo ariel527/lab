@@ -179,6 +179,41 @@ void listar_vendas() {
     }
 }
 
+void excluir_cliente() {
+    if (qtd_clientes == 0) {
+        printf("Nenhum cliente cadastrado.\n");
+        return;
+    }
+
+    listar_clientes();
+
+    int id;
+    printf("Digite o ID do cliente a ser excluído: ");
+    scanf("%d", &id);
+
+    int encontrado = 0;
+    for (int i = 0; i < qtd_clientes; i++) {
+        if (clientes[i].id == id) {
+            encontrado = 1;
+
+            // "Shift" os clientes seguintes uma posição à esquerda
+            for (int j = i; j < qtd_clientes - 1; j++) {
+                clientes[j] = clientes[j + 1];
+                clientes[j].id = j + 1;  // Atualiza ID
+            }
+
+            qtd_clientes--;
+            printf("Cliente excluído com sucesso.\n");
+            break;
+        }
+    }
+
+    if (!encontrado) {
+        printf("Cliente com ID %d não encontrado.\n", id);
+    }
+}
+
+
 int main() {
     int opcao;
     do {
@@ -189,6 +224,7 @@ int main() {
         printf("4 - Listar Produtos\n");
         printf("5 - Registrar Venda\n");
         printf("6 - Listar Vendas\n");
+        printf("7 - Excluir Cliente\n");
         printf("0 - Sair\n");
         printf("Escolha uma opção: ");
         scanf("%d", &opcao);
@@ -200,6 +236,7 @@ int main() {
             case 4: listar_produtos(); break;
             case 5: inserir_venda(); break;
             case 6: listar_vendas(); break;
+            case 7: excluir_cliente(); break;
             case 0: printf("Saindo...\n"); break;
             default: printf("Opção inválida.\n");
         }
@@ -207,3 +244,4 @@ int main() {
 
     return 0;
 }
+
