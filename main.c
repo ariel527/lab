@@ -64,6 +64,19 @@ void inserir_cliente() {
 
     clientes[qtd_clientes++] = novo;
     printf("Cliente cadastrado com sucesso!\n");
+    int esc;
+    printf("Deseja cadastrar mais um cliente?\n1-sim - 0-não\n");
+    scanf("%d", &esc);
+    if (esc == 1) {
+        inserir_cliente();
+    }
+    else if (esc == 0) {
+        return;
+    }
+    else {
+        printf ("Escolha inválida.\n");
+    }
+        
 }
 
 void listar_clientes() {
@@ -196,10 +209,9 @@ void excluir_cliente() {
         if (clientes[i].id == id) {
             encontrado = 1;
 
-            // "Shift" os clientes seguintes uma posição à esquerda
             for (int j = i; j < qtd_clientes - 1; j++) {
                 clientes[j] = clientes[j + 1];
-                clientes[j].id = j + 1;  // Atualiza ID
+                clientes[j].id = j + 1;  
             }
 
             qtd_clientes--;
@@ -212,6 +224,24 @@ void excluir_cliente() {
         printf("Cliente com ID %d não encontrado.\n", id);
     }
 }
+    void atualizar_cliente() {
+        int id2;
+        printf("Qual cliente a ser atualizado?\n");
+        scanf("%d", &id2);
+         for (int i = 0; i < qtd_clientes; i++) {
+        if (clientes[i].id == id2) {
+            printf ("***Atualização dos dados***\n");
+            printf("Nome: ");
+            scanf(" %[^\n]", clientes[i].nome);
+            printf("Telefone: ");
+            scanf(" %[^\n]", clientes[i].telefone);
+            printf("Endereco: ");
+            scanf(" %[^\n]", clientes[i].endereco);
+            printf("Email: ");
+            scanf(" %[^\n]", clientes[i].email);
+        }
+        }
+    }
 
 
 int main() {
@@ -225,6 +255,7 @@ int main() {
         printf("5 - Registrar Venda\n");
         printf("6 - Listar Vendas\n");
         printf("7 - Excluir Cliente\n");
+        printf("8 - Atualizar Cliente\n");
         printf("0 - Sair\n");
         printf("Escolha uma opção: ");
         scanf("%d", &opcao);
@@ -237,6 +268,7 @@ int main() {
             case 5: inserir_venda(); break;
             case 6: listar_vendas(); break;
             case 7: excluir_cliente(); break;
+            case 8: atualizar_cliente(); break;
             case 0: printf("Saindo...\n"); break;
             default: printf("Opção inválida.\n");
         }
@@ -244,4 +276,3 @@ int main() {
 
     return 0;
 }
-
